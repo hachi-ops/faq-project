@@ -1,0 +1,1 @@
+CREATE DATABASE faq_database;
