@@ -1,9 +1,14 @@
 import "./App.css";
+import AddQuestion from "./components/AddQuestion";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <>
-      <h1>FAQ app</h1>
+      <Home />
+      <Login />
+      <AddQuestion />
     </>
   );
 }

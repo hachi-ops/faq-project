@@ -1,7 +1,7 @@
 import React from "react";
 
-const ListQuestions = () => {
+function ListQuestions() {
   return <div>ListQuestions</div>;
-};
+}
 
 export default ListQuestions;

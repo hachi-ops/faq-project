@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const EditAnswer = () => {
-  return (
-    <div>EditAnswer</div>
-  )
+function EditAnswer() {
+  return <div>EditAnswer</div>;
 }
 
-export default EditAnswer
+export default EditAnswer;
