@@ -27,10 +27,24 @@ app.post("/questions", async (req, res) => {
 });
 
 //get all questions
-app.get("/", async (req, res) => {
+app.get("/questions", async (req, res) => {
   try {
     const allQuestions = await pool.query("SELECT * FROM questions");
     res.json(allQuestions.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//get a question
+app.get("/questions/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const question = await pool.query(
+      "SELECT * FROM questions WHERE question_id = $1",
+      [id]
+    );
+    res.json(question.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
