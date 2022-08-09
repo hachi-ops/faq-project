@@ -1,7 +1,20 @@
 import React, { useState, useEffect } from "react";
+import EditQuestion from "./EditQuestion";
 
 function ListQuestions() {
   const [questions, setQuestions] = useState([]);
+
+  //delete question function
+  async function deleteQuestion(id) {
+    try {
+      await fetch(`http://localhost:5000/questions/${id}`, {
+        method: "DELETE",
+      });
+      setQuestions(questions.filter((question) => question.question_id !== id));
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
   async function getQuestions() {
     const res = await fetch("http://localhost:5000/questions");
 
@@ -22,16 +35,25 @@ function ListQuestions() {
         <thead>
           <tr>
             <th>Question</th>
-            <th>Add answer</th>
+            <th>Edit Question</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
           {questions.map((question) => (
-            <tr>
+            <tr key={question.question_id}>
               <td>{question.question}</td>
-              <td>Add answer</td>
-              <td>Delete</td>
+              <td>
+                <EditQuestion question={question} />
+              </td>
+              <td>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => deleteQuestion(question.question_id)}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
           {/*    <tr>
