@@ -3,18 +3,23 @@ import React, { useState } from "react";
 const EditQuestion = ({ question }) => {
   const [newQuestion, setNewQuestion] = useState(question.newQuestion);
 
-  //edit description function
+  //edit question function
 
   const updateQuestion = async (e) => {
     e.preventDefault();
     try {
       const body = { newQuestion };
-      await fetch(`http://localhost:5000/questions/${question.question_id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        `http://localhost:5000/questions/${question.question_id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
 
+      // console.log(response);
+      // console.log(body);
       window.location = "/";
     } catch (err) {
       console.error(err.message);
@@ -32,9 +37,6 @@ const EditQuestion = ({ question }) => {
         Edit
       </button>
 
-      {/* 
-        id = id10
-      */}
       <div
         className="modal"
         id={`id${question.question_id}`}
@@ -69,7 +71,7 @@ const EditQuestion = ({ question }) => {
                 className="btn btn-warning"
                 data-dismiss="modal"
                 onClick={(e) => updateQuestion(e)}
-                disabled={!newQuestion}
+                // disabled={!newQuestion}
               >
                 Edit
               </button>

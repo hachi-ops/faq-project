@@ -28,7 +28,7 @@ function ListQuestions() {
     getQuestions();
   }, []);
 
-  console.log(questions);
+  // console.log(questions);
   return (
     <>
       <table className="table mt-5">
@@ -56,9 +56,6 @@ function ListQuestions() {
               </td>
             </tr>
           ))}
-          {/*    <tr>
-           
-          </tr>*/}
         </tbody>
       </table>
     </>
