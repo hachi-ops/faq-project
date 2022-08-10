@@ -14,6 +14,7 @@ app.use(express.json());
 
 app.post("/questions", async (req, res) => {
   try {
+    console.log(req.body);
     const { question } = req.body;
     const newQuestion = await pool.query(
       "INSERT INTO questions (question) VALUES ($1) RETURNING *",
@@ -26,6 +27,20 @@ app.post("/questions", async (req, res) => {
   }
 });
 
+//update/edit a question
+app.put("/questions/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { question } = req.body;
+    const updateQuestion = await pool.query(
+      "UPDATE questions SET question = $1 WHERE question_id = $2",
+      [question, id]
+    );
+    res.json("Question updated");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 //get all questions
 app.get("/questions", async (req, res) => {
   try {
@@ -50,6 +65,19 @@ app.get("/questions/:id", async (req, res) => {
   }
 });
 
+//delete a question
+app.delete("/questions/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteQuestion = await pool.query(
+      "DELETE FROM questions WHERE question_id = $1",
+      [id]
+    );
+    res.json("Question deleted");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

@@ -9,14 +9,15 @@ function AddQuestion() {
     e.preventDefault();
     try {
       const body = { question };
-      const response = await fetch("http://localhost5000/questions", {
+      await fetch("http://localhost:5000/questions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      console.log(response);
+
+      window.location = "/";
     } catch (err) {
-      console.err(err.message);
+      console.error(err.message);
     }
   };
   return (
