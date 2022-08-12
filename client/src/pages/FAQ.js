@@ -28,6 +28,9 @@ function FAQ() {
               </div>
               <div className={selected === i ? "content show" : "content"}>
                 {item.answer}
+                <button onClick={() => navigate("submit-answer")}>
+                  add answer
+                </button>
               </div>
             </div>
           ))}

@@ -1,7 +1,13 @@
 import React from "react";
 
 function AddAnswer() {
-  return <div>AddAnswer</div>;
+  return (
+    <form>
+      <h4>Question Text</h4>
+      <input type="text" placeholder="type your answer..." />
+      <button>submit</button>
+    </form>
+  );
 }
 
 export default AddAnswer;

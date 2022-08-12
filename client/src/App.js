@@ -3,7 +3,7 @@ import "./App.css";
 
 import FAQ from "./pages/FAQ";
 import Navbar from "./components/Navbar";
-import SubmitQuestionAnswer from "./pages/SubmitQuestionAnswer";
+import SubmitAnswer from "./pages/SubmitAnswer";
 // import AccountCreationConfrimation from "./components/AccountCreationConfrimation";
 // import QuestionsWithCategories from "./components/QuestionsWithCategories";
 
@@ -15,10 +15,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<FAQ />} />
-        <Route
-          path="submit-question-answer"
-          element={<SubmitQuestionAnswer />}
-        />
+        <Route path="submit-answer" element={<SubmitAnswer />} />
         {/* <Route
           path="account-creation-confirmation"
           element={<AccountCreationConfrimation />}
