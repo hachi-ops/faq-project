@@ -15,13 +15,13 @@ app.use(express.json());
 app.post("/questions", async (req, res) => {
   try {
     console.log(req.body);
-    const { question } = req.body;
-    const newQuestion = await pool.query(
-      "INSERT INTO questions (question) VALUES ($1) RETURNING *",
-      [question]
+    const { question, answer } = req.body;
+    const newEntry = await pool.query(
+      "INSERT INTO questions (question, answer) VALUES ($1,$2) RETURNING *",
+      [question, answer]
     );
     // res.json(req.body);
-    res.json(newQuestion.rows[0]);
+    res.json(newEntry.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
