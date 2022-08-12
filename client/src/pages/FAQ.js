@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import ListQuestions from "../components/ListQuestions";
-import "../App.css";
-import AddQuestion from "../components/AddQuestion";
+import { useNavigate } from "react-router-dom";
 
-function Home() {
+import "../App.css";
+
+function FAQ() {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState(null);
 
   const toggle = (i) => {
@@ -14,8 +15,9 @@ function Home() {
   };
   return (
     <>
-      <AddQuestion />
-      <ListQuestions />
+      {/* <button onClick={() => navigate("account-creation-confirmation")}>
+        create account
+      </button> */}
       <div className="wrapper">
         <div className="accordion">
           {data.map((item, i) => (
@@ -59,4 +61,4 @@ const data = [
   },
 ];
 
-export default Home;
+export default FAQ;

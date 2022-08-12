@@ -18,8 +18,9 @@ const EditQuestion = ({ question }) => {
         }
       );
 
-      // console.log(response);
-      // console.log(body);
+      console.log(response);
+      // console.log(body)
+      // response.json(response);
       window.location = "/";
     } catch (err) {
       console.error(err.message);
