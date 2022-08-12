@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import AddAnswer from "./AddAnswer";
+import AddQuestion from "./AddQuestion";
 // import EditQuestion from "./EditQuestion";
 
 function ListQuestions() {
   const [questions, setQuestions] = useState([]);
 
-  // //delete question function
-  // async function deleteQuestion(id) {
-  //   try {
-  //     await fetch(`http://localhost:5000/questions/${id}`, {
-  //       method: "DELETE",
-  //     });
-  //     setQuestions(questions.filter((question) => question.question_id !== id));
-  //   } catch (err) {
-  //     console.error(err.message);
-  //   }
-  // }
+  // delete question function
+  async function deleteQuestion(id) {
+    try {
+      await fetch(`http://localhost:5000/questions/${id}`, {
+        method: "DELETE",
+      });
+      setQuestions(questions.filter((question) => question.question_id !== id));
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
   async function getQuestions() {
     const res = await fetch("http://localhost:5000/questions");
 
@@ -32,6 +33,9 @@ function ListQuestions() {
   // console.log(questions);
   return (
     <>
+      <div>
+        <AddQuestion />
+      </div>
       <table className="table mt-5">
         <thead>
           <tr>
@@ -44,20 +48,22 @@ function ListQuestions() {
           {questions.map((question) => (
             <tr key={question.question_id}>
               <td>{question.question}</td>
+
               <td>
                 <AddAnswer />
               </td>
+              <td>{question.answer}</td>
               {/* <td>
                 <EditQuestion question={question} />
               </td> */}
-              {/* <td>
+              <td>
                 <button
                   className="btn btn-danger"
                   onClick={() => deleteQuestion(question.question_id)}
                 >
                   Delete
                 </button>
-              </td> */}
+              </td>
             </tr>
           ))}
         </tbody>

@@ -5,8 +5,7 @@ function Navbar() {
   return (
     <nav className="primary-nav">
       <NavLink to="/">FAQ</NavLink>
-      {/* <NavLink to="/submit-question-answer">Submit Q/A</NavLink> */}
-      {/* <NavLink to="/questions-with-categories">Search</NavLink> */}
+      <NavLink to="list-questions">Q/A</NavLink>
     </nav>
   );
 }

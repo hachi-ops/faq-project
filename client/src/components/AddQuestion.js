@@ -22,7 +22,6 @@ function AddQuestion() {
   };
   return (
     <>
-      <h1 className="text-center my-5">Add Question</h1>
       <form className="d-flex" onSubmit={onSubmitForm}>
         <input
           type="text"
