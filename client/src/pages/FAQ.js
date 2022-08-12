@@ -15,9 +15,6 @@ function FAQ() {
   };
   return (
     <>
-      {/* <button onClick={() => navigate("account-creation-confirmation")}>
-        create account
-      </button> */}
       <div className="wrapper">
         <div className="accordion">
           {data.map((item, i) => (
