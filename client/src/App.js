@@ -1,13 +1,18 @@
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import Home from "./pages/Home";
-// import ListQuestions from "./components/ListQuestions";
-// import Login from "./pages/Login";
+import FAQ from "./pages/FAQ";
+import Navbar from "./components/Navbar";
+import SubmitAnswer from "./pages/SubmitAnswer";
 
 function App() {
   return (
     <>
-      <Home />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<FAQ />} />
+        <Route path="submit-answer" element={<SubmitAnswer />} />
+      </Routes>
 
       {/* <ListQuestions /> */}
       {/* <Login /> */}
