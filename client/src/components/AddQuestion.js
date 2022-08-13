@@ -15,7 +15,7 @@ function AddQuestion() {
         body: JSON.stringify(body),
       });
 
-      window.location = "/";
+      window.location = "/list-questions";
     } catch (err) {
       console.error(err.message);
     }
