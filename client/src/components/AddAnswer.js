@@ -1,26 +1,3 @@
-// import React, { useState } from "react";
-
-// function AddAnswer() {
-//   const [answer, setAnswer] = useState("");
-
-//   function handleAddAnswer(e) {
-//     // console.log(e.target.value);
-//     setAnswer(e.target.value);
-//   }
-//   return (
-//     <form>
-//       <input
-//         type="text"
-//         placeholder="type your answer..."
-//         onChange={handleAddAnswer}
-//       />
-//       <button>submit</button>
-//     </form>
-//   );
-// }
-
-// export default AddAnswer;
-
 import React from "react";
 import { useState } from "react";
 
