@@ -3,7 +3,8 @@ import "./App.css";
 
 import FAQ from "./pages/FAQ";
 import Navbar from "./components/Navbar";
-import SubmitAnswer from "./pages/SubmitAnswer";
+
+import ListQuestions from "./components/ListQuestions";
 
 function App() {
   return (
@@ -11,11 +12,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<FAQ />} />
-        <Route path="submit-answer" element={<SubmitAnswer />} />
+        <Route path="list-questions" element={<ListQuestions />} />
       </Routes>
-
-      {/* <ListQuestions /> */}
-      {/* <Login /> */}
     </>
   );
 }

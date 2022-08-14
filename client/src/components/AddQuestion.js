@@ -9,20 +9,25 @@ function AddQuestion() {
     e.preventDefault();
     try {
       const body = { question };
-      await fetch("http://localhost:5000/questions", {
+      //proxy is only used ind development so it will be ignored in production
+      // so if there is no http://localhost:5000 then by default it is going to use heroku domain
+      //this heroku app is just for our server serving the buid static content and also holding the restful api
+
+      //https://faq-project-demo.herokuapp.com/questions
+
+      await fetch("/questions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
 
-      window.location = "/";
+      window.location = "/list-questions";
     } catch (err) {
       console.error(err.message);
     }
   };
   return (
     <>
-      <h1 className="text-center my-5">Add Question</h1>
       <form className="d-flex" onSubmit={onSubmitForm}>
         <input
           type="text"

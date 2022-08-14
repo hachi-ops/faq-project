@@ -1,13 +1,29 @@
 const express = require("express");
 const app = express();
-const port = 5000;
+
 const cors = require("cors");
 const pool = require("./db");
+const path = require("path");
+const PORT = process.env.PORT || 5000;
+
+//process.env.PORT
+//process.env.NODE_ENV => production or undefined
 
 //middleware
 app.use(cors());
 app.use(express.json());
 
+// app.use(express.static(path.join(__dirname, "client/build")));
+app.use("/", express.static("./client/build"));
+
+if (process.env.NODE_ENV === "production") {
+  //server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
+console.log(__dirname);
+console.log(path.join(__dirname, "client/build"));
 //ROUTES//
 
 //add a question
@@ -15,13 +31,13 @@ app.use(express.json());
 app.post("/questions", async (req, res) => {
   try {
     console.log(req.body);
-    const { question } = req.body;
-    const newQuestion = await pool.query(
-      "INSERT INTO questions (question) VALUES ($1) RETURNING *",
-      [question]
+    const { question, answer } = req.body;
+    const newEntry = await pool.query(
+      "INSERT INTO questions (question, answer) VALUES ($1,$2) RETURNING *",
+      [question, answer]
     );
     // res.json(req.body);
-    res.json(newQuestion.rows[0]);
+    res.json(newEntry.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
@@ -78,6 +94,11 @@ app.delete("/questions/:id", async (req, res) => {
     console.error(err.message);
   }
 });
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
 });
