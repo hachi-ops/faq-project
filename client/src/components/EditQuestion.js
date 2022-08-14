@@ -5,18 +5,15 @@ const EditQuestion = ({ question }) => {
 
   //edit question function
 
-  const updateQuestion = async (e) => {
+  const updateQuestion = async (id) => {
     e.preventDefault();
     try {
       const body = { newQuestion };
-      const response = await fetch(
-        `http://localhost:5000/questions/${question.question_id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        }
-      );
+      const response = await fetch(`/questions/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
 
       console.log(response);
       // console.log(body)

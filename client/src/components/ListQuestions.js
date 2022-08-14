@@ -9,7 +9,7 @@ function ListQuestions() {
   // delete question function
   async function deleteQuestion(id) {
     try {
-      await fetch(`http://localhost:5000/questions/${id}`, {
+      await fetch(`/questions/${id}`, {
         method: "DELETE",
       });
       setQuestions(questions.filter((question) => question.question_id !== id));
@@ -18,7 +18,7 @@ function ListQuestions() {
     }
   }
   async function getQuestions() {
-    const res = await fetch("http://localhost:5000/questions");
+    const res = await fetch("/questions");
 
     const questionsArray = await res.json();
 

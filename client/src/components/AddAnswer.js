@@ -32,7 +32,7 @@ function AddAnswer() {
     e.preventDefault();
     try {
       const body = { answer };
-      await fetch("http://localhost:5000/questions", {
+      await fetch("/questions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
