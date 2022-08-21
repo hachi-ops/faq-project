@@ -15,12 +15,24 @@ app.use(express.json());
 app.post("/questions", async (req, res) => {
   try {
     console.log(req.body);
-    const { question, answer } = req.body;
+    const { question } = req.body;
     const newEntry = await pool.query(
-      "INSERT INTO questions (question, answer) VALUES ($1,$2) RETURNING *",
-      [question, answer]
+      "INSERT INTO questions (question) VALUES ($1) RETURNING *",
+      [question]
     );
     // res.json(req.body);
+    res.json(newEntry.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//add an answer
+app.post("/questions", async (req, res) => {
+  try {
+    const newEntry = await pool.query("UPDATE questions (answer) VALUES ($1)", [
+      answer,
+    ]);
     res.json(newEntry.rows[0]);
   } catch (err) {
     console.error(err.message);
@@ -81,3 +93,30 @@ app.delete("/questions/:id", async (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+// const express = require("express");
+// const bodyParser = require("body-parser");
+// const app = express();
+// const db = require("./queries");
+// const port = 5050;
+
+// app.use(bodyParser.json());
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: true,
+//   })
+// );
+
+// app.get("/", (request, response) => {
+//   response.json({ info: "Node.js, Express, and Postgres API" });
+// });
+
+// app.get("/faq-questions", db.getQuestions);
+// app.get("/faq-questions/:id", db.getQuestionById);
+// app.post("/faq-questions", db.createQuestion);
+// app.put("/faq-questions/:id", db.updateQuestion);
+// app.delete("/faq-questions/:id", db.deleteQuestion);
+
+// app.listen(port, () => {
+//   console.log(`App running on port ${port}.`);
+// });
