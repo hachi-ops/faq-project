@@ -1,5 +1,11 @@
 -- CREATE DATABASE faq;
 
+
+-- CREATE TABLE questions (
+-- 	id BIGSERIAL NOT NULL PRIMARY KEY,
+-- 	question_text VARCHAR(300) NOT NULL
+-- );
+
 -- create table answers (
 -- 	id BIGSERIAL NOT NULL PRIMARY KEY,
 --   answer_text VARCHAR(500),
@@ -7,10 +13,7 @@
 -- 	UNIQUE(question_id)
 -- );
 
--- CREATE TABLE questions (
--- 	id BIGSERIAL NOT NULL PRIMARY KEY,
--- 	question_text VARCHAR(300) NOT NULL
--- );
+
 
 --   INSERT INTO questions (question_text)
 --   VALUES ('Who am I?'), ('what time is the dinner?');
@@ -29,7 +32,7 @@
 -- --//get all questions with answers
 --   -- SELECT * FROM questions JOIN answers ON questions.id = question_id; //might be wrong
 --   SELECT * FROM questions JOIN answers ON questions.id = answers.id; --probably the right one
-
+--   SELECT * FROM answers JOIN questions ON questions.id = answers.id;
 --   --//get all unanswered questions;
 
 

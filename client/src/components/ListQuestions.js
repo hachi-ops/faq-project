@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AddAnswer from "./AddAnswer";
 import AddQuestion from "./AddQuestion";
-// import EditQuestion from "./EditQuestion";
+import EditQuestion from "./EditQuestion";
 
 function ListQuestions() {
   const [questions, setQuestions] = useState([]);
@@ -12,7 +12,7 @@ function ListQuestions() {
       await fetch(`http://localhost:5000/questions/${id}`, {
         method: "DELETE",
       });
-      setQuestions(questions.filter((question) => question.question_id !== id));
+      setQuestions(questions.filter((question) => question.id !== id));
     } catch (err) {
       console.error(err.message);
     }
@@ -46,20 +46,20 @@ function ListQuestions() {
         </thead>
         <tbody>
           {questions.map((question) => (
-            <tr key={question.question_id}>
+            <tr key={question.id}>
               <td>{question.question}</td>
 
               <td>
                 <AddAnswer />
               </td>
               <td>{question.answer}</td>
-              {/* <td>
+              <td>
                 <EditQuestion question={question} />
-              </td> */}
+              </td>
               <td>
                 <button
                   className="btn btn-danger"
-                  onClick={() => deleteQuestion(question.question_id)}
+                  onClick={() => deleteQuestion(question.id)}
                 >
                   Delete
                 </button>

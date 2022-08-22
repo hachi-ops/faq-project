@@ -9,7 +9,7 @@ function AddAnswer() {
     e.preventDefault();
     try {
       const body = { answer };
-      await fetch(`http://localhost:5000/questions/${question.question_id}`, {
+      await fetch(`http://localhost:5000/questions/${answer.question_id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

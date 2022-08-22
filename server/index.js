@@ -1,12 +1,30 @@
 const express = require("express");
 const app = express();
-const port = 5000;
+
 const cors = require("cors");
 const pool = require("./db");
+const path = require("path");
+const { REFUSED } = require("dns");
+const PORT = process.env.PORT || 5000;
+
+//process.env.PORT
+//process.env.NODE_ENV => production or undefined
 
 //middleware
 app.use(cors());
 app.use(express.json());
+
+// app.use(express.static(path.join(__dirname, "client/build")));
+app.use("/", express.static("./client/build"));
+
+if (process.env.NODE_ENV === "production") {
+  //server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
+console.log(__dirname);
+console.log(path.join(__dirname, "client/build"));
 
 //ROUTES//
 
@@ -20,58 +38,70 @@ app.post("/questions", async (req, res) => {
       "INSERT INTO questions (question) VALUES ($1) RETURNING *",
       [question]
     );
-    // res.json(req.body);
-    res.json(newEntry.rows[0]);
+    res.json(req.body);
+    // res.json(newEntry.rows[0]); //this line is cursed
   } catch (err) {
     console.error(err.message);
   }
 });
 
-//add an answer
-app.post("/questions", async (req, res) => {
+// //add an answer
+// app.put("/questions/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { answer } = req.body;
+//     const updateQuestion = await pool.query(
+//       "UPDATE questions SET answer = $1 WHERE id = $2",
+//       [answer, id]
+//     );
+//     res.json(req.body);
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// });
+//get all answered questions (page 1: FAQ)
+app.get("/answers", async (req, res) => {
   try {
-    const newEntry = await pool.query("UPDATE questions (answer) VALUES ($1)", [
-      answer,
-    ]);
-    res.json(newEntry.rows[0]);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-
-//update/edit a question
-app.put("/questions/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { question } = req.body;
-    const updateQuestion = await pool.query(
-      "UPDATE questions SET question = $1 WHERE question_id = $2",
-      [question, id]
+    const allQuestions = await pool.query(
+      "SELECT * FROM questions WHERE answer IS NOT NULL"
     );
-    res.json("Question updated");
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-//get all questions
-app.get("/questions", async (req, res) => {
-  try {
-    const allQuestions = await pool.query("SELECT * FROM questions");
     res.json(allQuestions.rows);
   } catch (err) {
     console.error(err.message);
   }
 });
 
-//get a question
-app.get("/questions/:id", async (req, res) => {
+//get unanswered questions(page 2: Add Answer)
+app.get("/questions", async (req, res) => {
+  try {
+    const allUnansweredQuestions = await pool.query(
+      "SELECT * FROM questions WHERE answer IS NULL"
+    );
+    res.json(allUnansweredQuestions.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//get a question (answered and unanswered)
+app.get("/questions-and-answers/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const question = await pool.query(
-      "SELECT * FROM questions WHERE question_id = $1",
-      [id]
-    );
-    res.json(question.rows[0]);
+    const answer = await pool.query("SELECT * FROM questions WHERE id = $1", [
+      id,
+    ]);
+    res.json(answer.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//get all questions and answers
+
+app.get("/questions-and-answers", async (req, res) => {
+  try {
+    const all = await pool.query("SELECT * FROM questions");
+    res.json(all.rows);
   } catch (err) {
     console.error(err.message);
   }
@@ -82,7 +112,7 @@ app.delete("/questions/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const deleteQuestion = await pool.query(
-      "DELETE FROM questions WHERE question_id = $1",
+      "DELETE FROM questions WHERE id = $1",
       [id]
     );
     res.json("Question deleted");
@@ -90,33 +120,45 @@ app.delete("/questions/:id", async (req, res) => {
     console.error(err.message);
   }
 });
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+
+//delete an answer (without deleting question)
+
+//???
+
+//edit unanswered question
+app.put("/questions/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { question } = req.body;
+    const updateQuestion = await pool.query(
+      "UPDATE questions SET question = $1 WHERE id = $2",
+      [question, id]
+    );
+    res.json(req.body);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
-// const express = require("express");
-// const bodyParser = require("body-parser");
-// const app = express();
-// const db = require("./queries");
-// const port = 5050;
+//add an answer to an unanswered question
+app.put("/questions-and-answers/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { answer } = req.body;
+    const updateAnswer = await pool.query(
+      "UPDATE questions SET answer = $1 WHERE id = $2",
+      [answer, id]
+    );
+    res.json(req.body);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
-// app.use(bodyParser.json());
-// app.use(
-//   bodyParser.urlencoded({
-//     extended: true,
-//   })
-// );
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
 
-// app.get("/", (request, response) => {
-//   response.json({ info: "Node.js, Express, and Postgres API" });
-// });
-
-// app.get("/faq-questions", db.getQuestions);
-// app.get("/faq-questions/:id", db.getQuestionById);
-// app.post("/faq-questions", db.createQuestion);
-// app.put("/faq-questions/:id", db.updateQuestion);
-// app.delete("/faq-questions/:id", db.deleteQuestion);
-
-// app.listen(port, () => {
-//   console.log(`App running on port ${port}.`);
-// });
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
+});
