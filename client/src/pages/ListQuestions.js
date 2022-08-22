@@ -12,7 +12,7 @@ function ListQuestions() {
       await fetch(`http://localhost:5000/questions/${id}`, {
         method: "DELETE",
       });
-      setQuestions(questions.filter((question) => question.question_id !== id));
+      setQuestions(questions.filter((question) => question.id !== id));
     } catch (err) {
       console.error(err.message);
     }
@@ -46,7 +46,7 @@ function ListQuestions() {
         </thead>
         <tbody>
           {questions.map((question) => (
-            <tr key={question.question_id}>
+            <tr key={question.id}>
               <td>{question.question}</td>
               <td>
                 {" "}
@@ -57,7 +57,7 @@ function ListQuestions() {
               <td>
                 <button
                   className="btn btn-danger"
-                  onClick={() => deleteQuestion(question.question_id)}
+                  onClick={() => deleteQuestion(question.id)}
                 >
                   Delete
                 </button>

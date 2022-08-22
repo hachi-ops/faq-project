@@ -10,7 +10,7 @@ const EditQuestion = ({ question }) => {
     try {
       const body = { newQuestion };
       const response = await fetch(
-        `http://localhost:5000/questions/${question.question_id}`,
+        `http://localhost:5000/questions/${question.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
