@@ -108,7 +108,7 @@ app.get("/questions-and-answers", async (req, res) => {
 });
 
 //delete a question
-app.delete("/questions/:id", async (req, res) => {
+app.delete("/questions-and-answers/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const deleteQuestion = await pool.query(
