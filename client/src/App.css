@@ -11,34 +11,48 @@
 }
 
 .item {
-  background: aliceblue;
+  border: 1px solid black;
+  border-image: linear-gradient(
+      to right,
+      grey 25%,
+      cyan 25%,
+      indigo 50%,
+      red 50%,
+      red 75%,
+      teal 75%
+    )
+    5;
   margin-bottom: 5px;
   padding: 10px 20px;
 }
 
 .title {
-  color: #3358a2;
+  color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
 }
 
+.title_individual_cell {
+  border-radius: 2rem;
+}
 .content {
   color: #3358a2;
   max-height: 0;
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+  transition: all 1s cubic-bezier(0, 1, 0, 1);
 }
 
 .content.show {
   height: auto;
   max-height: 9999px;
   transition: all 0.5s cubic-bezier(1, 0, 1, 0);
+  background-color: white;
 }
 
 .primary-nav {
-  background-color: aliceblue;
+  background-color: white;
   padding: 16px 32px;
   margin-bottom: 30px;
 }
@@ -55,4 +69,8 @@ nav a.active {
 .add-question-button {
   background-color: rgb(237, 67, 67);
   color: white;
+  border-radius: 3rem;
+  border: 2px;
+  padding: 0.3rem;
+  margin-bottom: 2rem;
 }
