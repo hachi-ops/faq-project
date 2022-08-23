@@ -51,3 +51,8 @@ nav a.active {
   text-decoration: none;
   font-weight: bold;
 }
+
+.add-question-button {
+  background-color: rgb(237, 67, 67);
+  color: white;
+}

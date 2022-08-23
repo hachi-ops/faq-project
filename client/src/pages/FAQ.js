@@ -30,7 +30,7 @@ function FAQ() {
   };
   return (
     <>
-      <button onClick={() => navigate("list-questions")}>add question</button>
+      <button onClick={() => navigate("list-questions")} className="add-question-button">add question</button>
       <div className="wrapper">
         <div className="accordion">
           {questions.map((item, i) => (
