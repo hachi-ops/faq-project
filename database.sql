@@ -1,7 +1,7 @@
 -- CREATE DATABASE faq_database;
 
 CREATE TABLE questions(
-    question_id SERIAL PRIMARY KEY,
-    question VARCHAR(500),
-    answer VARCHAR(500)
+  id BIGSERIAL PRIMARY KEY,
+  question VARCHAR(300),
+  answer VARCHAR(500)
 );
