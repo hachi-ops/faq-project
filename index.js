@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const pool = require("./db");
 const path = require("path");
+const { REFUSED } = require("dns");
 const PORT = process.env.PORT || 5000;
 
 //process.env.PORT
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV === "production") {
 
 console.log(__dirname);
 console.log(path.join(__dirname, "client/build"));
+
 //ROUTES//
 
 //add a question
@@ -31,51 +33,75 @@ console.log(path.join(__dirname, "client/build"));
 app.post("/questions", async (req, res) => {
   try {
     console.log(req.body);
-    const { question, answer } = req.body;
+    const { question } = req.body;
     const newEntry = await pool.query(
-      "INSERT INTO questions (question, answer) VALUES ($1,$2) RETURNING *",
-      [question, answer]
+      "INSERT INTO questions (question) VALUES ($1) RETURNING *",
+      [question]
     );
-    // res.json(req.body);
-    res.json(newEntry.rows[0]);
+    res.json(req.body);
+    // res.json(newEntry.rows[0]); //this line is cursed
   } catch (err) {
     console.error(err.message);
   }
 });
 
-//update/edit a question
-app.put("/questions/:id", async (req, res) => {
+// //add an answer
+// app.put("/questions/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { answer } = req.body;
+//     const updateQuestion = await pool.query(
+//       "UPDATE questions SET answer = $1 WHERE id = $2",
+//       [answer, id]
+//     );
+//     res.json(req.body);
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// });
+//get all answered questions (page 1: FAQ)
+app.get("/answers", async (req, res) => {
   try {
-    const { id } = req.params;
-    const { question } = req.body;
-    const updateQuestion = await pool.query(
-      "UPDATE questions SET question = $1 WHERE question_id = $2",
-      [question, id]
+    const allQuestions = await pool.query(
+      "SELECT * FROM questions WHERE answer IS NOT NULL"
     );
-    res.json("Question updated");
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-//get all questions
-app.get("/questions", async (req, res) => {
-  try {
-    const allQuestions = await pool.query("SELECT * FROM questions");
     res.json(allQuestions.rows);
   } catch (err) {
     console.error(err.message);
   }
 });
 
-//get a question
-app.get("/questions/:id", async (req, res) => {
+//get unanswered questions(page 2: Add Answer)
+app.get("/questions", async (req, res) => {
+  try {
+    const allUnansweredQuestions = await pool.query(
+      "SELECT * FROM questions WHERE answer IS NULL"
+    );
+    res.json(allUnansweredQuestions.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//get a question (answered and unanswered)
+app.get("/questions-and-answers/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const question = await pool.query(
-      "SELECT * FROM questions WHERE question_id = $1",
-      [id]
-    );
-    res.json(question.rows[0]);
+    const answer = await pool.query("SELECT * FROM questions WHERE id = $1", [
+      id,
+    ]);
+    res.json(answer.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//get all questions and answers
+
+app.get("/questions-and-answers", async (req, res) => {
+  try {
+    const all = await pool.query("SELECT * FROM questions");
+    res.json(all.rows);
   } catch (err) {
     console.error(err.message);
   }
@@ -86,10 +112,44 @@ app.delete("/questions/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const deleteQuestion = await pool.query(
-      "DELETE FROM questions WHERE question_id = $1",
+      "DELETE FROM questions WHERE id = $1",
       [id]
     );
     res.json("Question deleted");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//delete an answer (without deleting question)
+
+//???
+
+//edit unanswered question
+app.put("/questions/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { question } = req.body;
+    const updateQuestion = await pool.query(
+      "UPDATE questions SET question = $1 WHERE id = $2",
+      [question, id]
+    );
+    res.json(req.body);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//add an answer to an unanswered question
+app.put("/questions-and-answers/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { answer } = req.body;
+    const updateAnswer = await pool.query(
+      "UPDATE questions SET answer = $1 WHERE id = $2",
+      [answer, id]
+    );
+    res.json(req.body);
   } catch (err) {
     console.error(err.message);
   }
