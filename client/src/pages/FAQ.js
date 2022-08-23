@@ -5,6 +5,8 @@ import "../App.css";
 
 function FAQ() {
   const [questions, setQuestions] = useState([]);
+  const navigate = useNavigate();
+  const [selected, setSelected] = useState(null);
 
   async function getQuestions() {
     const res = await fetch("/answers");
@@ -18,9 +20,6 @@ function FAQ() {
   useEffect(() => {
     getQuestions();
   }, []);
-
-  const navigate = useNavigate();
-  const [selected, setSelected] = useState(null);
 
   const toggle = (i) => {
     if (selected === i) {
