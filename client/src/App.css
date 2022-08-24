@@ -14,16 +14,19 @@
   border: 1px solid black;
   border-image: linear-gradient(
       to right,
-      grey 25%,
+      rgb(8, 12, 227) 25%,
       cyan 25%,
       indigo 50%,
-      red 50%,
       red 75%,
       teal 75%
     )
     5;
   margin-bottom: 5px;
   padding: 10px 20px;
+}
+
+.item:hover {
+  border: 1px solid rgb(237, 67, 67);
 }
 
 .title {
@@ -58,7 +61,8 @@
 }
 
 nav a {
-  margin-right: 16px;
+  margin: 0rem 1rem;
+  color: rgb(237, 67, 67);
 }
 
 nav a.active {
@@ -73,4 +77,71 @@ nav a.active {
   border: 2px;
   padding: 0.3rem;
   margin-bottom: 2rem;
+}
+
+.btn-success {
+  margin-left: 2rem;
+  background-color: #22e14e;
+  border-radius: 12px;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 15px;
+  text-align: center;
+  transition: 150ms;
+  width: 4rem;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 0.85rem;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-success:not(:disabled):hover,
+.btn-success:not(:disabled):focus {
+  outline: 0;
+  background: #22e14e;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.btn-success:disabled {
+  filter: saturate(0) opacity(0.5);
+  -webkit-filter: saturate(0.2) opacity(0.5);
+  cursor: not-allowed;
+}
+
+.btn-danger {
+  background-color: #fff000;
+  border-radius: 12px;
+  color: #000;
+  cursor: pointer;
+  font-weight: bolder;
+  padding: 0.6rem 0.5rem;
+  text-align: center;
+  transition: 150ms;
+  width: 3.5rem;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-danger:not(:disabled):hover,
+.btn-danger:not(:disabled):focus {
+  outline: 0;
+  background: #f4e603;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.btn-danger:disabled {
+  filter: saturate(0) opacity(0.5);
+  -webkit-filter: saturate(0.2) opacity(0.5);
+  cursor: not-allowed;
+}
+
+.form-control {
+  width: 50%;
 }

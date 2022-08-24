@@ -34,7 +34,7 @@ function FAQ() {
         onClick={() => navigate("list-questions")}
         className="add-question-button"
       >
-        add question
+        Add Question
       </button>
       <div className="wrapper">
         <div className="accordion">
