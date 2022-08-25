@@ -31,7 +31,7 @@ function AddQuestion() {
       <form className="d-flex" onSubmit={onSubmitForm}>
         <input
           type="text"
-          placeholder="add question"
+          placeholder="ask a question"
           className="form-control"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
