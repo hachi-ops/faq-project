@@ -9,7 +9,7 @@ function ListQuestions() {
   // delete question function
   async function deleteQuestion(id) {
     try {
-      await fetch(`/questions/${id}`, {
+      await fetch(`/questions-and-answers/${id}`, {
         method: "DELETE",
       });
       setQuestions(questions.filter((question) => question.id !== id));
