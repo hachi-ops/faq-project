@@ -28,6 +28,20 @@ function FAQ() {
     }
     setSelected(i);
   };
+
+  const [query, setQuery] = useState("");
+
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`/search/?query=${query}`);
+
+      const parseResponse = await response.json();
+      console.log(parseResponse);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
   return (
     <>
       <button
@@ -36,6 +50,18 @@ function FAQ() {
       >
         Add Question
       </button>
+
+      <form onSubmit={onSubmitForm}>
+        <input
+          type="text"
+          name="query"
+          placeholder="search..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button>search</button>
+      </form>
+
       <div className="wrapper">
         <div className="accordion">
           {questions.map((item, i) => (

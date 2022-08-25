@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 const pool = require("./db");
 const path = require("path");
-const { REFUSED } = require("dns");
+// const { REFUSED } = require("dns");
 const PORT = process.env.PORT || 5000;
 
 //process.env.PORT
@@ -35,7 +35,7 @@ app.post("/questions", async (req, res) => {
     console.log(req.body);
     const { question } = req.body;
     const newEntry = await pool.query(
-      "INSERT INTO questions (question) VALUES ($1) RETURNING *",
+      "INSERT INTO questions (question) VALUES ($1)",
       [question]
     );
     res.json(req.body);
@@ -140,7 +140,7 @@ app.put("/questions/:id", async (req, res) => {
   }
 });
 
-//add an answer to an unanswered question
+//add an answer to an unanswered question---
 app.put("/questions-and-answers/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -150,6 +150,22 @@ app.put("/questions-and-answers/:id", async (req, res) => {
       [answer, id]
     );
     res.json(req.body);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//query parameter
+
+app.get("/search", async (req, res) => {
+  try {
+    // res.json(req.query);
+
+    const query = await pool.query(
+      "SELECT * FROM questions WHERE question || ' ' || answer ILIKE $1",
+      [`%${query}%`]
+    );
+    res.json(query.rows);
   } catch (err) {
     console.error(err.message);
   }
