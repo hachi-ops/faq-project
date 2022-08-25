@@ -24,7 +24,7 @@
 import React from "react";
 import { useState } from "react";
 
-function AddAnswer() {
+function AddAnswer({ id }) {
   const [answer, setAnswer] = useState("");
   console.log(answer);
 
@@ -32,8 +32,8 @@ function AddAnswer() {
     e.preventDefault();
     try {
       const body = { answer };
-      await fetch("/questions", {
-        method: "POST",
+      await fetch(`/questions-and-answers/${id}`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });

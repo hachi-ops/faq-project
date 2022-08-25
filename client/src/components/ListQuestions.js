@@ -50,7 +50,7 @@ function ListQuestions() {
               <td>{question.question}</td>
 
               <td>
-                <AddAnswer />
+                <AddAnswer id={question.id} />
               </td>
               <td>{question.answer}</td>
               {/* <td>
