@@ -5,7 +5,7 @@ const EditQuestion = ({ question }) => {
 
   //edit question function
 
-  const updateQuestion = async (id, e) => {
+  const updateQuestion = async (id) => {
     e.preventDefault();
     try {
       const body = { newQuestion };
