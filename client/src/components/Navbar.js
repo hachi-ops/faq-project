@@ -10,8 +10,7 @@ function Navbar() {
         alt="CodeYourFuture logo"
       ></img>
       <NavLink to="/">FAQ</NavLink>
-      <NavLink to="ask-a-question">Ask a Question</NavLink>
-      <NavLink to="answer-a-question">Add Answer</NavLink>
+      <NavLink to="list-questions">Q/A</NavLink>
     </nav>
   );
 }

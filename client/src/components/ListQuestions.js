@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AddAnswer from "../pages/AddAnswer";
+import AddAnswer from "./AddAnswer";
 import AddQuestion from "./AddQuestion";
 // import EditQuestion from "./EditQuestion";
 

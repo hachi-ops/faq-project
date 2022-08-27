@@ -4,9 +4,7 @@ import "./App.css";
 import FAQ from "./pages/FAQ";
 import Navbar from "./components/Navbar";
 
-// import ListQuestions from "./components/ListQuestions";
-import AskQuestion from "./pages/AskQuestion";
-import AddAnswer from "./pages/AddAnswer";
+import ListQuestions from "./components/ListQuestions";
 
 function App() {
   return (
@@ -14,8 +12,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<FAQ />} />
-        <Route path="answer-a-question" element={<AddAnswer />} />
-        <Route path="ask-a-question" element={<AskQuestion />} />
+        <Route path="list-questions" element={<ListQuestions />} />
       </Routes>
     </>
   );
