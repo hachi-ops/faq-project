@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AddAnswer from "./AddAnswer";
-import AddQuestion from "./AddQuestion";
+// import AddQuestion from "./AddQuestion";
 // import EditQuestion from "./EditQuestion";
 
 function ListQuestions() {
@@ -33,9 +33,9 @@ function ListQuestions() {
   // console.log(questions);
   return (
     <>
-      <div>
+      {/* <div>
         <AddQuestion />
-      </div>
+      </div> */}
       <table className="table mt-5">
         <thead>
           <tr>
