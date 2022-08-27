@@ -1,22 +1,10 @@
 import React, { useState, useEffect } from "react";
-import AddAnswer from "../pages/AddAnswer";
-import AddQuestion from "./AddQuestion";
-// import EditQuestion from "./EditQuestion";
+import AddQuestion from "../components/AddQuestion";
+// import EditQuestion from "../components/EditQuestion";
 
-function ListQuestions() {
+function AskQuestion() {
   const [questions, setQuestions] = useState([]);
 
-  // delete question function
-  async function deleteQuestion(id) {
-    try {
-      await fetch(`/questions-and-answers/${id}`, {
-        method: "DELETE",
-      });
-      setQuestions(questions.filter((question) => question.id !== id));
-    } catch (err) {
-      console.error(err.message);
-    }
-  }
   async function getQuestions() {
     const res = await fetch("/questions");
 
@@ -30,7 +18,17 @@ function ListQuestions() {
     getQuestions();
   }, []);
 
-  // console.log(questions);
+  // delete question function
+  async function deleteQuestion(id) {
+    try {
+      await fetch(`/questions-and-answers/${id}`, {
+        method: "DELETE",
+      });
+      setQuestions(questions.filter((question) => question.id !== id));
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
   return (
     <>
       <div>
@@ -40,19 +38,19 @@ function ListQuestions() {
         <thead>
           <tr>
             <th>Question</th>
-            {/* <th>Edit Question</th>
-            <th>Delete</th> */}
+            {/* <th>Add</th> */}
+            {/* <th>Edit Question</th> */}
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
           {questions.map((question) => (
             <tr key={question.id}>
               <td>{question.question}</td>
-
+              {/* 
               <td>
-                <AddAnswer id={question.id} />
-              </td>
-              <td>{question.answer}</td>
+                <button>Add</button>
+              </td> */}
               {/* <td>
                 <EditQuestion question={question} />
               </td> */}
@@ -72,4 +70,4 @@ function ListQuestions() {
   );
 }
 
-export default ListQuestions;
+export default AskQuestion;
