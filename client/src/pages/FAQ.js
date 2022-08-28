@@ -30,7 +30,7 @@ function FAQ() {
   return (
     <>
       <button
-        onClick={() => navigate("list-questions")}
+        onClick={() => navigate("ask-question")}
         className="add-question-button"
       >
         Add Question
