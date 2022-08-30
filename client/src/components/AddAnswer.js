@@ -1,30 +1,9 @@
-// import React, { useState } from "react";
-
-// function AddAnswer() {
-//   const [answer, setAnswer] = useState("");
-
-//   function handleAddAnswer(e) {
-//     // console.log(e.target.value);
-//     setAnswer(e.target.value);
-//   }
-//   return (
-//     <form>
-//       <input
-//         type="text"
-//         placeholder="type your answer..."
-//         onChange={handleAddAnswer}
-//       />
-//       <button>submit</button>
-//     </form>
-//   );
-// }
-
-// export default AddAnswer;
-
 import React from "react";
 import { useState } from "react";
 
-function AddAnswer({id}) {
+
+function AddAnswer({ id }) {
+ main
   const [answer, setAnswer] = useState("");
   console.log(answer);
 
@@ -32,7 +11,10 @@ function AddAnswer({id}) {
     e.preventDefault();
     try {
       const body = { answer };
-      await fetch("/questions-and-answers", {
+
+
+      await fetch(`/questions-and-answers/${id}`, {
+ main
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

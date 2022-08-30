@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import AddAnswer from "./AddAnswer";
-// import AddQuestion from "./AddQuestion";
-// import EditQuestion from "./EditQuestion";
+import AddAnswer from "../components/AddAnswer";
 
-function ListQuestions() {
+function AdminPage() {
   const [questions, setQuestions] = useState([]);
 
   // delete question function
@@ -18,7 +16,7 @@ function ListQuestions() {
     }
   }
   async function getQuestions() {
-    const res = await fetch("/questions");
+    const res = await fetch("/questions-and-answers");
 
     const questionsArray = await res.json();
 
@@ -29,8 +27,6 @@ function ListQuestions() {
   useEffect(() => {
     getQuestions();
   }, []);
-
-  // console.log(questions);
   return (
     <>
       {/* <div>
@@ -72,4 +68,4 @@ function ListQuestions() {
   );
 }
 
-export default ListQuestions;
+export default AdminPage;
