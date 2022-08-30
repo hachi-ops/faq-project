@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { getQueriesForElement, screen } from "@testing-library/dom";
+// import { getQueriesForElement, screen } from "@testing-library/dom";
 import AddQuestion from "./AddQuestion";
 import AddAnswer from "./AddAnswer";
 import ListQuestion from "./ListQuestions";
