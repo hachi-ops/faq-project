@@ -28,12 +28,7 @@ console.log(path.join(__dirname, "client/build"));
 
 //ROUTES//
 
-//register a user
-//routes
-
 app.use("/authentication", require("./routes/jwtAuth"));
-
-app.use("/dashboard", require("./routes/dashboard"));
 
 //add a question
 
@@ -52,35 +47,6 @@ app.post("/questions", async (req, res) => {
   }
 });
 
-// router.post("/todos", authorize, async (req, res) => {
-//   try {
-//     console.log(req.body);
-//     const { description } = req.body;
-//     const newTodo = await pool.query(
-//       "INSERT INTO todos (user_id, description) VALUES ($1, $2) RETURNING *",
-//       [req.user.id, description]
-//     );
-
-//     res.json(newTodo.rows[0]);
-//   } catch (err) {
-//     console.error(err.message);
-//   }
-// });
-
-// //add an answer
-// app.put("/questions/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const { answer } = req.body;
-//     const updateQuestion = await pool.query(
-//       "UPDATE questions SET answer = $1 WHERE id = $2",
-//       [answer, id]
-//     );
-//     res.json(req.body);
-//   } catch (err) {
-//     console.error(err.message);
-//   }
-// });
 //get all answered questions (page 1: FAQ)
 app.get("/answers", async (req, res) => {
   try {
@@ -142,10 +108,6 @@ app.delete("/questions-and-answers/:id", async (req, res) => {
     console.error(err.message);
   }
 });
-
-//delete an answer (without deleting question)
-
-//???
 
 //edit unanswered question
 app.put("/questions/:id", async (req, res) => {

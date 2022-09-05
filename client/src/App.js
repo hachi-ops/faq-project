@@ -1,37 +1,3 @@
-// import Profile from "./components/Profile";
-// import Landing from "./components/Landing";
-// import { AuthProvider } from "./components/auth";
-// import Login from "./components/Login";
-// import RequireAuth from "./components/RequireAuth";
-// import Register from "./components/Register";
-// function App() {
-//   return (
-//     <>
-//       <AuthProvider>
-//         <Navbar />
-
-//         <Routes>
-//
-//
-//           <Route
-//             path="profile"
-//             element={
-//               <RequireAuth>
-//                 <Profile />
-//               </RequireAuth>
-//             }
-//           />
-//           <Route path="/register" element={<Register />} />
-//           <Route path="login" element={<Login />} />
-//           <Route path="admin" element={<AdminPage />} />
-//         </Routes>
-//       </AuthProvider>
-//     </>
-//   );
-// }
-
-// export default App;
-
 import React, { useState, useEffect } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";

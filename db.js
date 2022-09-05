@@ -1,5 +1,3 @@
-const { Console } = require("console");
-
 const Pool = require("pg").Pool;
 require("dotenv").config();
 
@@ -10,7 +8,6 @@ const proConfig = {
 
 const devConfig = {
   connectionString: process.env.DATABASE_URL, //heroku addons
-  // ssl: { rejectUnauthorized: false },
 };
 
 console.log(devConfig);

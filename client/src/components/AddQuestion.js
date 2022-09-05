@@ -9,11 +9,6 @@ function AddQuestion() {
     e.preventDefault();
     try {
       const body = { question };
-      //proxy is only used ind development so it will be ignored in production
-      // so if there is no http://localhost:5000 then by default it is going to use heroku domain
-      //this heroku app is just for our server serving the buid static content and also holding the restful api
-
-      //https://faq-project-demo.herokuapp.com/questions
 
       await fetch("/questions", {
         method: "POST",
