@@ -28,6 +28,13 @@ console.log(path.join(__dirname, "client/build"));
 
 //ROUTES//
 
+//register a user
+//routes
+
+app.use("/authentication", require("./routes/jwtAuth"));
+
+app.use("/dashboard", require("./routes/dashboard"));
+
 //add a question
 
 app.post("/questions", async (req, res) => {
@@ -44,6 +51,21 @@ app.post("/questions", async (req, res) => {
     console.error(err.message);
   }
 });
+
+// router.post("/todos", authorize, async (req, res) => {
+//   try {
+//     console.log(req.body);
+//     const { description } = req.body;
+//     const newTodo = await pool.query(
+//       "INSERT INTO todos (user_id, description) VALUES ($1, $2) RETURNING *",
+//       [req.user.id, description]
+//     );
+
+//     res.json(newTodo.rows[0]);
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// });
 
 // //add an answer
 // app.put("/questions/:id", async (req, res) => {
@@ -87,9 +109,10 @@ app.get("/questions", async (req, res) => {
 app.get("/questions-and-answers/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const answer = await pool.query("SELECT * FROM questions WHERE id = $1", [
-      id,
-    ]);
+    const answer = await pool.query(
+      "SELECT * FROM questions WHERE question_id = $1",
+      [id]
+    );
     res.json(answer.rows[0]);
   } catch (err) {
     console.error(err.message);
@@ -112,7 +135,7 @@ app.delete("/questions-and-answers/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const deleteQuestion = await pool.query(
-      "DELETE FROM questions WHERE id = $1",
+      "DELETE FROM questions WHERE question_id = $1",
       [id]
     );
     res.json("Question deleted");
@@ -131,7 +154,7 @@ app.put("/questions/:id", async (req, res) => {
     const { id } = req.params;
     const { question } = req.body;
     const updateQuestion = await pool.query(
-      "UPDATE questions SET question = $1 WHERE id = $2",
+      "UPDATE questions SET question = $1 WHERE question_id = $2",
       [question, id]
     );
     res.json(req.body);
@@ -146,7 +169,7 @@ app.put("/questions-and-answers/:id", async (req, res) => {
     const { id } = req.params;
     const { answer } = req.body;
     const updateAnswer = await pool.query(
-      "UPDATE questions SET answer = $1 WHERE id = $2",
+      "UPDATE questions SET answer = $1 WHERE question_id = $2",
       [answer, id]
     );
     res.json(req.body);

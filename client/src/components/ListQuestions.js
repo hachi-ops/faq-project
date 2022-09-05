@@ -47,11 +47,11 @@ function ListQuestions() {
         </thead>
         <tbody>
           {questions.map((question) => (
-            <tr key={question.id}>
+            <tr key={question.question_id}>
               <td>{question.question}</td>
 
               <td>
-                <AddAnswer id={question.id} />
+                <AddAnswer id={question.question_id} />
               </td>
               <td>{question.answer}</td>
               {/* <td>
