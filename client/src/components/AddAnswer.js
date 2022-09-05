@@ -1,9 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-
 function AddAnswer({ id }) {
- main
   const [answer, setAnswer] = useState("");
   console.log(answer);
 
@@ -11,10 +9,7 @@ function AddAnswer({ id }) {
     e.preventDefault();
     try {
       const body = { answer };
-
-
       await fetch(`/questions-and-answers/${id}`, {
- main
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
