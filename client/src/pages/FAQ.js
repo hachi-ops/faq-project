@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import "../App.css";
 
 function FAQ() {
   const [questions, setQuestions] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [selected, setSelected] = useState(null);
 
   async function getQuestions() {
@@ -29,12 +29,12 @@ function FAQ() {
   };
   return (
     <>
-      <button
-        onClick={() => navigate("ask-question")}
+      {/* <button
+        onClick={() => navigate("list-questions")}
         className="add-question-button"
       >
         Add Question
-      </button>
+      </button> */}
       <div className="wrapper">
         <div className="accordion">
           {questions.map((item, i) => (

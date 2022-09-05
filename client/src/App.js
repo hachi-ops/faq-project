@@ -5,20 +5,44 @@ import FAQ from "./pages/FAQ";
 import Navbar from "./components/Navbar";
 
 import ListQuestions from "./components/ListQuestions";
-import AskQuestion from "./pages/AskQuestion";
 
 import AdminPage from "./pages/AdminPage";
+import Profile from "./components/Profile";
+import Landing from "./components/Landing";
+import { AuthProvider } from "./components/auth";
+import Login from "./components/Login";
+import RequireAuth from "./components/RequireAuth";
+import Register from "./components/Register";
 function App() {
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<FAQ />} />
-        <Route path="ask-question" element={<AskQuestion />} />
-        <Route path="list-questions" element={<ListQuestions />} />
+      <AuthProvider>
+        <Navbar />
 
-        <Route path="admin" element={<AdminPage />} />
-      </Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+                <Landing />
+                <FAQ />
+              </div>
+            }
+          />
+          <Route path="list-questions" element={<ListQuestions />} />
+          <Route
+            path="profile"
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }
+          />
+          <Route path="/register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="admin" element={<AdminPage />} />
+        </Routes>
+      </AuthProvider>
     </>
   );
 }

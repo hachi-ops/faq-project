@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react";
 import AddAnswer from "./AddAnswer";
-// import AddQuestion from "./AddQuestion";
+import AddQuestion from "./AddQuestion";
+
 // import EditQuestion from "./EditQuestion";
 
 function ListQuestions() {
   const [questions, setQuestions] = useState([]);
 
-  // delete question function
-  async function deleteQuestion(id) {
-    try {
-      await fetch(`/questions-and-answers/${id}`, {
-        method: "DELETE",
-      });
-      setQuestions(questions.filter((question) => question.id !== id));
-    } catch (err) {
-      console.error(err.message);
-    }
-  }
+  // // delete question function
+  // async function deleteQuestion(id) {
+  //   try {
+  //     await fetch(`/questions-and-answers/${id}`, {
+  //       method: "DELETE",
+  //     });
+  //     setQuestions(questions.filter((question) => question.id !== id));
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // }
   async function getQuestions() {
     const res = await fetch("/questions");
 
@@ -33,9 +34,9 @@ function ListQuestions() {
   // console.log(questions);
   return (
     <>
-      {/* <div>
+      <div>
         <AddQuestion />
-      </div> */}
+      </div>
       <table className="table mt-5">
         <thead>
           <tr>
@@ -56,14 +57,14 @@ function ListQuestions() {
               {/* <td>
                 <EditQuestion question={question} />
               </td> */}
-              <td>
+              {/* <td>
                 <button
                   className="btn btn-danger"
                   onClick={() => deleteQuestion(question.id)}
                 >
                   Delete
                 </button>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
