@@ -34,6 +34,7 @@ function ListQuestions() {
   // console.log(questions);
   return (
     <>
+      <h1 className="text-center my-5">Ask a Question</h1>
       <div>
         <AddQuestion />
       </div>

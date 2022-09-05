@@ -3,8 +3,6 @@ import ListQuestions from "../ListQuestions";
 
 //components
 
-import InputQ from "./questionslist/InputQ";
-
 const Dashboard = ({ setAuth }) => {
   const [name, setName] = useState("");
   const [allQuestions, setAllQuestions] = useState([]);
@@ -51,7 +49,6 @@ const Dashboard = ({ setAuth }) => {
         </button>
       </div>
 
-      <InputQ setQuestionsChange={setQuestionsChange} />
       {/* <ListQs
         allQuestions={allQuestions}
         setQuestionsChange={setQuestionsChange}
