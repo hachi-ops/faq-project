@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
+import ListQuestions from "../ListQuestions";
 
 //components
 
 import InputQ from "./questionslist/InputQ";
-import ListQs from "./questionslist/ListQs";
 
 const Dashboard = ({ setAuth }) => {
   const [name, setName] = useState("");
@@ -52,10 +52,11 @@ const Dashboard = ({ setAuth }) => {
       </div>
 
       <InputQ setQuestionsChange={setQuestionsChange} />
-      <ListQs
+      {/* <ListQs
         allQuestions={allQuestions}
         setQuestionsChange={setQuestionsChange}
-      />
+      /> */}
+      <ListQuestions />
     </div>
   );
 };

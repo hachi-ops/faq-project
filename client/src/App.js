@@ -1,12 +1,3 @@
-// import { Routes, Route } from "react-router-dom";
-// import "./App.css";
-
-// import FAQ from "./pages/FAQ";
-// import Navbar from "./components/Navbar";
-
-// import ListQuestions from "./components/ListQuestions";
-
-// import AdminPage from "./pages/AdminPage";
 // import Profile from "./components/Profile";
 // import Landing from "./components/Landing";
 // import { AuthProvider } from "./components/auth";
@@ -20,16 +11,8 @@
 //         <Navbar />
 
 //         <Routes>
-//           <Route
-//             path="/"
-//             element={
-//               <div>
-//                 <Landing />
-//                 <FAQ />
-//               </div>
-//             }
-//           />
-//           <Route path="list-questions" element={<ListQuestions />} />
+//
+//
 //           <Route
 //             path="profile"
 //             element={
@@ -48,11 +31,19 @@
 // }
 
 // export default App;
+
 import React, { useState, useEffect } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
+import "./App.css";
+
 //components
+
+import FAQ from "./pages/FAQ";
+import Navbar from "./components/Navbar";
+import ListQuestions from "./components/ListQuestions";
+// import Admin from "./pages/AdminPage";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -87,12 +78,20 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <Routes>
+        <Route path="list-questions" element={<ListQuestions />} />
         <Route
           exact
           path="/"
           element={
-            !isAuthenticated ? <Landing /> : <Navigate to="/dashboard" />
+            !isAuthenticated ? (
+              <div>
+                <Landing />, <FAQ />
+              </div>
+            ) : (
+              <Navigate to="/dashboard" />
+            )
           }
         />
         <Route
@@ -128,6 +127,7 @@ function App() {
             )
           }
         />
+        {/* <Route path="/admin" element={<Admin />} /> */}
       </Routes>
     </>
   );

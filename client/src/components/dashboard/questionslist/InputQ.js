@@ -31,11 +31,11 @@ const InputQ = ({ setQuestionsChange }) => {
   };
   return (
     <>
-      <h1 className="text-center my-5">Input Question</h1>
+      <h1 className="text-center my-5">Ask a Question</h1>
       <form className="d-flex" onSubmit={onSubmitForm}>
         <input
           type="text"
-          placeholder="add todo"
+          placeholder="add a question"
           className="form-control"
           value={text}
           onChange={(e) => setText(e.target.value)}

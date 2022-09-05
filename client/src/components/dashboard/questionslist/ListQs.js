@@ -9,7 +9,7 @@ const ListQs = ({ allQuestions, setQuestionsChange }) => {
 
   async function deleteQ(id) {
     try {
-      await fetch(`/dashboard/todos/${id}`, {
+      await fetch(`/dashboard/questions/${id}`, {
         method: "DELETE",
         headers: { jwt_token: localStorage.token },
       });
