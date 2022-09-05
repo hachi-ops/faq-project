@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+// import { useAuth } from "./auth";
 
 function Navbar() {
+  // const auth = useAuth();
   return (
     <nav className="primary-nav">
       <img
@@ -10,8 +12,9 @@ function Navbar() {
         alt="CodeYourFuture logo"
       ></img>
       <NavLink to="/">FAQ</NavLink>
-      <NavLink to="ask-question">Ask Q</NavLink>
-      <NavLink to="list-questions">Answer Q</NavLink>
+      {/* <NavLink to="list-questions">Q/A</NavLink> */}
+      {/* <NavLink to="profile">Profile</NavLink>
+      {!auth.user && <NavLink to="login">Login</NavLink>} */}
     </nav>
   );
 }

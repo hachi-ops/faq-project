@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react";
 import AddAnswer from "./AddAnswer";
-// import AddQuestion from "./AddQuestion";
+import AddQuestion from "./AddQuestion";
+
 // import EditQuestion from "./EditQuestion";
 
 function ListQuestions() {
   const [questions, setQuestions] = useState([]);
 
-  // delete question function
-  async function deleteQuestion(id) {
-    try {
-      await fetch(`/questions-and-answers/${id}`, {
-        method: "DELETE",
-      });
-      setQuestions(questions.filter((question) => question.id !== id));
-    } catch (err) {
-      console.error(err.message);
-    }
-  }
+  // // delete question function
+  // async function deleteQuestion(id) {
+  //   try {
+  //     await fetch(`/questions-and-answers/${id}`, {
+  //       method: "DELETE",
+  //     });
+  //     setQuestions(questions.filter((question) => question.id !== id));
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // }
   async function getQuestions() {
     const res = await fetch("/questions");
 
@@ -33,9 +34,10 @@ function ListQuestions() {
   // console.log(questions);
   return (
     <>
-      {/* <div>
+      <h1 className="text-center my-5">Ask a Question</h1>
+      <div>
         <AddQuestion />
-      </div> */}
+      </div>
       <table className="table mt-5">
         <thead>
           <tr>
@@ -46,24 +48,24 @@ function ListQuestions() {
         </thead>
         <tbody>
           {questions.map((question) => (
-            <tr key={question.id}>
+            <tr key={question.question_id}>
               <td>{question.question}</td>
 
               <td>
-                <AddAnswer id={question.id} />
+                <AddAnswer id={question.question_id} />
               </td>
               <td>{question.answer}</td>
               {/* <td>
                 <EditQuestion question={question} />
               </td> */}
-              <td>
+              {/* <td>
                 <button
                   className="btn btn-danger"
                   onClick={() => deleteQuestion(question.id)}
                 >
                   Delete
                 </button>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
