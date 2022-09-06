@@ -30,7 +30,7 @@ function AddAnswer({ id }) {
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
         />
-        <button className="btn btn-success">ADD</button>
+        <button>Add</button>
       </form>
     </>
   );

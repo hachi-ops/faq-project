@@ -1,32 +1,65 @@
+body {
+  color: #0a0a0a;
+}
+
 .wrapper {
   display: flex;
   width: 100vw;
-
   justify-content: center;
   align-items: center;
 }
 
 .accordion {
-  width: 500px;
+  width: 600px;
 }
 
 .item {
-  border: 1px solid black;
-  border-image: linear-gradient(
-      to right,
-      rgb(8, 12, 227) 25%,
-      cyan 25%,
-      indigo 50%,
-      red 75%,
-      teal 75%
-    )
-    5;
-  margin-bottom: 5px;
+  border: 1px solid transparent;
+
+  margin-bottom: 35px;
   padding: 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
 
 .item:hover {
-  border: 1px solid rgb(237, 67, 67);
+  border: 1px solid transparent;
+
+  border-image: linear-gradient(
+      90deg,
+      rgba(131, 58, 180, 1) 0%,
+      rgba(253, 29, 29, 1) 50%,
+      rgba(252, 176, 69, 1) 100%
+    )
+    3;
+}
+
+.jumbotron {
+  background-color: #ed4343;
+  background-color: #0a0a0a;
+  background: rgb(10, 10, 10);
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 10, 1) 48%,
+    rgba(237, 67, 67, 1) 74%,
+    rgba(255, 255, 255, 1) 96%
+  );
+
+  background: rgb(10, 10, 10);
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 10, 1) 48%,
+    rgba(237, 67, 67, 1) 73%,
+    rgba(239, 239, 239, 1) 91%,
+    rgba(255, 255, 255, 1) 95%
+  );
+  color: white;
+}
+
+h1 {
+  padding-bottom: 2px;
+  border-bottom: 4px solid #ed4343;
+  width: fit-content;
+  margin-bottom: 30px;
 }
 
 .title {
@@ -41,7 +74,6 @@
   border-radius: 2rem;
 }
 .content {
-  color: #3358a2;
   max-height: 0;
   overflow: hidden;
   transition: all 1s cubic-bezier(0, 1, 0, 1);
@@ -60,6 +92,9 @@
   margin-bottom: 30px;
 }
 
+nav {
+  background-color: #efefef;
+}
 nav a {
   margin: 0rem 1rem;
   color: rgb(237, 67, 67);
@@ -70,16 +105,16 @@ nav a.active {
   font-weight: bold;
 }
 
-.add-question-button {
+/* .add-question-button {
   background-color: rgb(237, 67, 67);
   color: white;
   border-radius: 3rem;
   border: 2px;
   padding: 0.3rem;
   margin-bottom: 2rem;
-}
+} */
 
-.btn-success {
+/* .btn-success {
   margin-left: 2rem;
   background-color: #22e14e;
   border-radius: 12px;
@@ -96,9 +131,9 @@ nav a.active {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-}
+} */
 
-.btn-success:not(:disabled):hover,
+/* .btn-success:not(:disabled):hover,
 .btn-success:not(:disabled):focus {
   outline: 0;
   background: #22e14e;
@@ -109,9 +144,9 @@ nav a.active {
   filter: saturate(0) opacity(0.5);
   -webkit-filter: saturate(0.2) opacity(0.5);
   cursor: not-allowed;
-}
+} */
 
-.btn-danger {
+/* .btn-danger {
   background-color: #fff000;
   border-radius: 12px;
   color: #000;
@@ -127,9 +162,9 @@ nav a.active {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-}
+} */
 
-.btn-danger:not(:disabled):hover,
+/* .btn-danger:not(:disabled):hover,
 .btn-danger:not(:disabled):focus {
   outline: 0;
   background: #f4e603;
@@ -140,8 +175,37 @@ nav a.active {
   filter: saturate(0) opacity(0.5);
   -webkit-filter: saturate(0.2) opacity(0.5);
   cursor: not-allowed;
-}
+} */
 
 .form-control {
   width: 50%;
+  margin: auto;
+}
+
+button {
+  background: #ed4343;
+  border: 1px solid transparent;
+  width: 100px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  padding: 8px 0;
+  margin-right: 20px;
+  border-radius: 3px;
+}
+
+button:hover {
+  border: 1px solid transparent;
+  background: black;
+  font-weight: bold;
+}
+
+.btn-form {
+  display: block;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+  }
 }
