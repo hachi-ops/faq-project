@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function AccountCreationConfrimation() {
+function SignupConfirm() {
   const navigate = useNavigate();
   return (
     <>
       <div>AccountCreationConfrimation</div>
-      <button onClick={() => navigate(-1)}>back</button>
+      <button onClick={() => navigate("/login")}>back</button>
     </>
   );
 }
 
-export default AccountCreationConfrimation;
+export default SignupConfirm;
