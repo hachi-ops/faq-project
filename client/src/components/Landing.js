@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
-    <div className="jumbotron">
+    <div className="jumbotron mt-5">
       <h1>Welcome to CYF Frequently Asked Questions</h1>
       <p>Sign In to ask and answer questions</p>
-      <Link to="/login">
-        <button>Login</button>
+      <Link to="/login" className="btn btn-primary">
+        Login
       </Link>
-      <Link to="/register">
-        <button>Register</button>
+      <Link to="/register" className="btn btn-primary ml-3">
+        Register
       </Link>
     </div>
   );
