@@ -23,7 +23,7 @@ function AddAnswer({ id }) {
   return (
     <>
       <form onSubmit={onSubmitForm}>
-        <textarea
+        <input
           type="text"
           placeholder="add answer"
           className="form-control"

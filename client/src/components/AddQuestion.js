@@ -24,7 +24,7 @@ function AddQuestion() {
   return (
     <>
       <form onSubmit={onSubmitForm}>
-        <textarea
+        <input
           type="text"
           placeholder="ask a question"
           className="form-control"
