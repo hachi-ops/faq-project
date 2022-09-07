@@ -16,7 +16,7 @@ function AddQuestion() {
         body: JSON.stringify(body),
       });
 
-      window.location = "/list-questions";
+      window.location = "/dashboard";
     } catch (err) {
       console.error(err.message);
     }
@@ -31,7 +31,7 @@ function AddQuestion() {
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
         />
-        <button className="btn-form">ADD</button>
+        <button className="btn-form">Add</button>
       </form>
     </>
   );

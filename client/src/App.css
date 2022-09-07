@@ -128,72 +128,6 @@ nav img {
   margin-right: 50px;
 }
 
-/* .add-question-button {
-
-  color: white;
-  border-radius: 3rem;
-  border: 2px;
-  padding: 0.3rem;
-  margin-bottom: 2rem;
-}
-
-.btn-success {
-  margin-left: 2rem;
-
-  border-radius: 12px;
-  color: #000;
-  cursor: pointer;
-  font-weight: bold;
-  padding: 10px 15px;
-  text-align: center;
-  transition: 150ms;
-  width: 4rem;
-  box-sizing: border-box;
-  border: 0;
-  font-size: 0.85rem;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.btn-success:not(:disabled):hover,
-.btn-success:not(:disabled):focus {
-  outline: 0;
-  background: #22e14e;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
-}
-
-.btn-success:disabled {
-  filter: saturate(0) opacity(0.5);
-  -webkit-filter: saturate(0.2) opacity(0.5);
-  cursor: not-allowed;
-}
-
-.btn-danger {
-  background-color: #fff000;
-  border-radius: 12px;
-  color: #000;
-  cursor: pointer;
-  font-weight: bolder;
-  padding: 0.6rem 0.5rem;
-  text-align: center;
-  transition: 150ms;
-  width: 3.5rem;
-  box-sizing: border-box;
-  border: 0;
-  font-size: 20px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.btn-danger:not(:disabled):hover,
-.btn-danger:not(:disabled):focus {
-  outline: 0;
-  background: #f4e603;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
-} */
-
 .form-control {
   width: 50%;
   margin: auto;
@@ -224,10 +158,10 @@ button:hover {
   margin-top: 30px;
 }
 
-input[type="text"] {
+/* input[type="text"] {
   width: 600px;
   height: 70px;
-}
+} */
 /* @media only screen and (max-width: 600px) {
   body {
   }
