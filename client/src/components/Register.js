@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Register = ({ setAuth }) => {
-  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -40,7 +39,7 @@ const Register = ({ setAuth }) => {
 
   return (
     <>
-      <h2 className="mt-5 text-center">Register</h2>
+      <h1 className="mt-5 text-center">Register</h1>
       <form onSubmit={onSubmitForm}>
         <input
           type="text"
@@ -66,14 +65,9 @@ const Register = ({ setAuth }) => {
           onChange={(e) => onChange(e)}
           className="form-control my-3"
         />
-        <button
-          className="btn-form"
-          onClick={() => navigate("signup-confirm", { replace: true })}
-        >
-          Submit
-        </button>
+        <button className="btn btn-success btn-block">Submit</button>
       </form>
-      {/* <Link to="/login">login</Link> */}
+      <Link to="/login">login</Link>
     </>
   );
 };

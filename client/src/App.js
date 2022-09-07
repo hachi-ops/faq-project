@@ -9,13 +9,12 @@ import "./App.css";
 import FAQ from "./pages/FAQ";
 import Navbar from "./components/Navbar";
 import ListQuestions from "./components/ListQuestions";
-import Admin from "./pages/AdminPage";
+// import Admin from "./pages/AdminPage";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import Landing from "./components/Landing";
-import SignupConfirm from "./components/SignupConfirm";
 
 function App() {
   const checkAuthenticated = async () => {
@@ -94,8 +93,7 @@ function App() {
             )
           }
         />
-        <Route path="/register/signup-confirm" element={<SignupConfirm />} />
-        <Route path="/admin" element={<Admin />} />
+        {/* <Route path="/admin" element={<Admin />} /> */}
       </Routes>
     </>
   );
