@@ -34,14 +34,14 @@ function ListQuestions() {
   // console.log(questions);
   return (
     <>
-      <h1 className="text-center my-5">Ask a Question</h1>
+      <h2 className="text-center my-5">Ask a Question</h2>
       <div>
         <AddQuestion />
       </div>
       <table className="table mt-5">
         <thead>
           <tr>
-            <th>Question</th>
+            <th>Unanswered Questions</th>
             {/* <th>Edit Question</th>
             <th>Delete</th> */}
           </tr>

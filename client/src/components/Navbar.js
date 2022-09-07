@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 function Navbar() {
   // const auth = useAuth();
   return (
-    <nav className="primary-nav">
+    <nav>
       <img
         src="https://codeyourfuture.io/wp-content/uploads/2019/03/cyf_brand.png"
         width="100rem"

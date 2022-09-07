@@ -43,16 +43,9 @@ const Dashboard = ({ setAuth }) => {
   return (
     <div>
       <div className="d-flex mt-5 justify-content-around">
-        <h2>{name} 's Questions List</h2>
-        <button onClick={(e) => logout(e)} className="btn btn-primary">
-          Logout
-        </button>
+        <button onClick={(e) => logout(e)}>Logout</button>
       </div>
 
-      {/* <ListQs
-        allQuestions={allQuestions}
-        setQuestionsChange={setQuestionsChange}
-      /> */}
       <ListQuestions />
     </div>
   );

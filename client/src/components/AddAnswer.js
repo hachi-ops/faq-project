@@ -22,15 +22,15 @@ function AddAnswer({ id }) {
   };
   return (
     <>
-      <form className="d-flex" onSubmit={onSubmitForm}>
-        <input
+      <form onSubmit={onSubmitForm}>
+        <textarea
           type="text"
           placeholder="add answer"
           className="form-control"
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
         />
-        <button className="btn btn-success">ADD</button>
+        <button className="btn-form">ADD</button>
       </form>
     </>
   );
